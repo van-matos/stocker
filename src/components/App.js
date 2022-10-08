@@ -5,7 +5,6 @@ import UserContext from "../context/UserContext";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 
-import "../assets/styles/reset.css";
 import GlobalStyle from "../assets/styles/globalStyles";
 
 function App() {
