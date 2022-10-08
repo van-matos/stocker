@@ -31,7 +31,6 @@ function SignupPage() {
     }
 
     function failure() {
-      console.log(signUp);
       alert("Erro! Dados inválidos.");
     }
   }
