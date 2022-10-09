@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import UserContext from "../context/UserContext";
+import styled from "styled-components";
 
 function ProductList() {
   const { token } = useContext(UserContext);
@@ -27,22 +28,37 @@ function ProductList() {
       return <p>Não há produtos cadastrados</p>;
     }
 
-    return products.map((product) => {
-      const { id, barcode, name, description, quantity, price } = product;
+    return (
+      <Container>
+        <h2>Your products</h2>
 
-      return (
-        <div key={id}>
-          <span>{barcode}</span>
-          <span>{name}</span>
-          <span>{description}</span>
-          <span>{quantity}</span>
-          <span>{price}</span>
-        </div>
-      );
-    });
+        <table>
+          <thead>
+            <tr>
+              <th>Barcode</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.barcode}</td>
+                <td>{product.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Container>
+    );
   }
 
   return <div>{RenderProducts()}</div>;
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
 
 export default ProductList;
