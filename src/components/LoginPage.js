@@ -36,6 +36,7 @@ function LoginPage() {
   }
 
   function toHome(token) {
+    console.log(token);
     localStorage.setItem("token", token);
     setToken(token);
     navigate("/home");

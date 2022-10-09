@@ -3,10 +3,12 @@ import axios from "axios";
 
 import UserContext from "../context/UserContext";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function ProductList() {
   const { token } = useContext(UserContext);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const config = {
@@ -22,6 +24,10 @@ function ProductList() {
     });
   }, [token]);
 
+  function ToNewProductPage() {
+    navigate("/new");
+  }
+
   function RenderProducts() {
     if (!products.length) {
       return <p>Não há produtos cadastrados</p>;
@@ -31,6 +37,7 @@ function ProductList() {
       <Container>
         <Title>
           <h2>Your products</h2>
+          <h3 onClick={ToNewProductPage}>Add new product</h3>
         </Title>
 
         <table>
@@ -76,7 +83,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export default ProductList;
