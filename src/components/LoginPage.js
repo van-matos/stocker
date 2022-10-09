@@ -26,6 +26,7 @@ function LoginPage() {
   }
 
   function toHome(data) {
+    console.log(data);
     setUser(data);
     navigate("/home");
   }

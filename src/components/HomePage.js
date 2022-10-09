@@ -1,12 +1,11 @@
 import Header from "./Header";
+import ProductList from "./ProductList";
 
 function HomePage() {
   return (
     <>
       <Header />
-      <div>
-        <h1>Home page</h1>
-      </div>
+      <ProductList />
     </>
   );
 }
