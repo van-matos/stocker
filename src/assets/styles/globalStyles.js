@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: 32px;
     font-weight: 400;
-    margin-bottom: 28px;
   }
   
   input {

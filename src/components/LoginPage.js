@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -10,6 +10,16 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const { setToken } = useContext(UserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (() => {
+      const localToken = localStorage.getItem("token");
+      if (localToken) {
+        setToken(localToken);
+        navigate("/home");
+      }
+    })();
+  });
 
   function Login(e) {
     e.preventDefault();
@@ -26,7 +36,7 @@ function LoginPage() {
   }
 
   function toHome(token) {
-    console.log(token);
+    localStorage.setItem("token", token);
     setToken(token);
     navigate("/home");
   }

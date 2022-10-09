@@ -9,6 +9,7 @@ function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    console.log(token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
