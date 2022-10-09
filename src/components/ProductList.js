@@ -9,7 +9,6 @@ function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    console.log(token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -19,7 +18,6 @@ function ProductList() {
     const promise = axios.get("http://localhost:5000/products", config);
 
     promise.then((response) => {
-      console.log(response.data);
       setProducts(response.data);
     });
   }, [token]);
@@ -31,7 +29,9 @@ function ProductList() {
 
     return (
       <Container>
-        <h2>Your products</h2>
+        <Title>
+          <h2>Your products</h2>
+        </Title>
 
         <table>
           <thead>
@@ -60,6 +60,23 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+
+  table {
+    border: 1px solid;
+  }
+
+  th {
+    border: 1px solid;
+  }
+
+  td {
+    border: 1px solid;
+  }
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default ProductList;

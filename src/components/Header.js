@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 import UserContext from "../context/UserContext";
 
 function Header() {
-  let { token } = useContext(UserContext);
+  const { setToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   function clearUser() {
-    console.log("Clicou!");
-    token = "";
+    setToken("");
     localStorage.clear();
     navigate("/");
   }
