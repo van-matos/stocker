@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 function ProductList() {
   const { token } = useContext(UserContext);
   const [products, setProducts] = useState([]);
+
+  const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,12 +19,12 @@ function ProductList() {
       },
     };
 
-    const promise = axios.get("http://localhost:5000/products", config);
+    const promise = axios.get(`${REACT_APP_API_URL}/products`, config);
 
     promise.then((response) => {
       setProducts(response.data);
     });
-  }, [token]);
+  }, [token, REACT_APP_API_URL]);
 
   function ToNewProductPage() {
     navigate("/new");

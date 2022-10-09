@@ -14,6 +14,8 @@ function NewProductPage() {
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
 
+  const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -34,7 +36,7 @@ function NewProductPage() {
       price: parseFloat(price),
     };
 
-    const promise = axios.post("http://localhost:5000/products", entry, config);
+    const promise = axios.post(`${REACT_APP_API_URL}/products`, entry, config);
     promise.then(toHome);
     promise.catch((error) => alert(error.response.statusText));
   }

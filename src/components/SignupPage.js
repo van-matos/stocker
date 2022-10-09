@@ -9,6 +9,7 @@ function SignupPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   function submit(e) {
@@ -21,7 +22,7 @@ function SignupPage() {
       confirmPassword,
     };
 
-    const promise = axios.post("http://localhost:5000/signup", signUp);
+    const promise = axios.post(`${REACT_APP_API_URL}/signup`, signUp);
     promise.then(toLogin);
     promise.catch(failure);
 

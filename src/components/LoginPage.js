@@ -9,6 +9,8 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useContext(UserContext);
+
+  const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   async function Login(e) {
@@ -20,7 +22,7 @@ function LoginPage() {
     };
 
     try {
-      const promise = await axios.post("http://localhost:5000/login", user);
+      const promise = await axios.post(`${REACT_APP_API_URL}/login`, user);
       setToken(promise.data.token);
       localStorage.setItem("token", promise.data.token);
       navigate("/home");
