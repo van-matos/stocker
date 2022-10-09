@@ -8,7 +8,7 @@ import UserContext from "../context/UserContext";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(UserContext);
+  const { setToken } = useContext(UserContext);
   const navigate = useNavigate();
 
   function Login(e) {
@@ -21,13 +21,13 @@ function LoginPage() {
 
     const promise = axios.post("http://localhost:5000/login", user);
 
-    promise.then((response) => toHome(response.data));
+    promise.then((response) => toHome(response.data.token));
     promise.catch(failure);
   }
 
-  function toHome(data) {
-    console.log(data);
-    setUser(data);
+  function toHome(token) {
+    console.log(token);
+    setToken(token);
     navigate("/home");
   }
 

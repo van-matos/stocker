@@ -27,11 +27,11 @@ function ProductList() {
       return <p>Não há produtos cadastrados</p>;
     }
 
-    return products.map((product, index) => {
-      const { barcode, name, description, quantity, price } = product;
+    return products.map((product) => {
+      const { id, barcode, name, description, quantity, price } = product;
 
       return (
-        <div index={index}>
+        <div key={id}>
           <span>{barcode}</span>
           <span>{name}</span>
           <span>{description}</span>

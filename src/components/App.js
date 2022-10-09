@@ -10,10 +10,10 @@ import HomePage from "./HomePage";
 import GlobalStyle from "../assets/styles/globalStyles";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState({});
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ token, setToken }}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
