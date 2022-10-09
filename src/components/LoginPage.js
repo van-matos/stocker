@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -11,17 +11,7 @@ function LoginPage() {
   const { setToken } = useContext(UserContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    (() => {
-      const localToken = localStorage.getItem("token");
-      if (localToken) {
-        setToken(localToken);
-        navigate("/home");
-      }
-    })();
-  });
-
-  function Login(e) {
+  async function Login(e) {
     e.preventDefault();
 
     const user = {
@@ -29,23 +19,17 @@ function LoginPage() {
       password,
     };
 
-    const promise = axios.post("http://localhost:5000/login", user);
-
-    promise.then((response) => toHome(response.data.token));
-    promise.catch(failure);
-  }
-
-  function toHome(token) {
-    console.log(token);
-    localStorage.setItem("token", token);
-    setToken(token);
-    navigate("/home");
-  }
-
-  function failure() {
-    setEmail("");
-    setPassword("");
-    alert("usuário e/ou senha inválidos");
+    try {
+      const promise = await axios.post("http://localhost:5000/login", user);
+      setToken(promise.data.token);
+      localStorage.setItem("token", promise.data.token);
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+      setEmail("");
+      setPassword("");
+      alert("usuário e/ou senha inválidos");
+    }
   }
 
   return (

@@ -5,7 +5,7 @@ import UserContext from "../context/UserContext";
 
 function HomePage() {
   const { setToken } = useContext(UserContext);
-  const localToken = localStorage.getItem("token");
+  const localToken = localStorage.getItem("token", token);
 
   if (localToken) {
     setToken(localToken);
